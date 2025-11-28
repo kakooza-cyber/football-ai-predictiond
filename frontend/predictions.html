@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Predictions - FootPredict AI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">⚽</div>
+                    <h1>FootPredict AI</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="predictions.html" class="active">Predictions</a></li>
+                        <li><a href="live-matches.html">Live Matches</a></li>
+                        <li><a href="leagues.html">Leagues</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h2>AI Football Predictions</h2>
+            <p>Get accurate match predictions powered by our advanced AI algorithm.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="api-settings">
+            <h3>Backend Configuration</h3>
+            <p>Your predictions will load automatically when backend is deployed.</p>
+            <div class="api-status connected">
+                <div class="status-indicator connected"></div>
+                <span>Backend: Ready to connect</span>
+            </div>
+        </section>
+
+        <section id="predictions">
+            <div class="section-header">
+                <h2 class="section-title">Today's Predictions</h2>
+                <button class="refresh-btn" id="refresh-predictions">
+                    <span>Refresh</span> 🔄
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="match-teams">
+                        <div class="team">
+                            <div class="team-logo">MCI</div>
+                            <div class="team-name">Manchester City</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <div class="team-logo">LIV</div>
+                            <div class="team-name">Liverpool</div>
+                        </div>
+                    </div>
+                    <div class="match-time">Today, 15:00 GMT</div>
+                </div>
+
+                <div class="prediction-section">
+                    <div class="prediction-header">
+                        <div class="ai-badge">AI PREDICTION</div>
+                        <div class="accuracy">68% Confidence</div>
+                    </div>
+                    <div class="prediction-details">
+                        <div class="prediction-item">
+                            <div class="prediction-label">Predicted Winner</div>
+                            <div class="prediction-value">Manchester City</div>
+                            <div class="confidence-meter">
+                                <div class="confidence-level" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-label">Expected Goals</div>
+                            <div class="prediction-value">2.8 - 1.2</div>
+                            <div class="confidence-meter">
+                                <div class="confidence-level" style="width: 72%"></div>
+                            </div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-label">Both Teams Score</div>
+                            <div class="prediction-value">Yes (72%)</div>
+                            <div class="confidence-meter">
+                                <div class="confidence-level" style="width: 72%"></div>
+                            </div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-label">Over 2.5 Goals</div>
+                            <div class="prediction-value">Yes (78%)</div>
+                            <div class="confidence-meter">
+                                <div class="confidence-level" style="width: 78%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="match-teams">
+                        <div class="team">
+                            <div class="team-logo">ARS</div>
+                            <div class="team-name">Arsenal</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team">
+                            <div class="team-logo">CHE</div>
+                            <div class="team-name">Chelsea</div>
+                        </div>
+                    </div>
+                    <div class="match-time">Today, 17:30 GMT</div>
+                </div>
+
+                <div class="prediction-section">
+                    <div class="prediction-header">
+                        <div class="ai-badge">AI PREDICTION</div>
+                        <div class="accuracy">63% Confidence</div>
+                    </div>
+                    <div class="prediction-details">
+                        <div class="prediction-item">
+                            <div class="prediction-label">Predicted Winner</div>
+                            <div class="prediction-value">Draw</div>
+                            <div class="confidence-meter">
+                                <div class="confidence-level" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-label">Expected Goals</div>
+                            <div class="prediction-value">1.9 - 1.9</div>
+                            <div class="confidence-meter">
+                                <div class="confidence-level" style="width: 58%"></div>
+                            </div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-label">Both Teams Score</div>
+                            <div class="prediction-value">Yes (68%)</div>
+                            <div class="confidence-meter">
+                                <div class="confidence-level" style="width: 68%"></div>
+                            </div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-label">Over 2.5 Goals</div>
+                            <div class="prediction-value">No (62%)</div>
+                            <div class="confidence-meter">
+                                <div class="confidence-level" style="width: 62%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FootPredict AI</h3>
+                    <p>Advanced AI-powered football predictions with over 50% accuracy rate.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="predictions.html">Predictions</a>
+                    <a href="live-matches.html">Live Matches</a>
+                    <a href="leagues.html">Leagues</a>
+                    <a href="about.html">About Us</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 FootPredict AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="config.js"></script>
+</body>
+  </html>
