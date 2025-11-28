@@ -1,7 +1,7 @@
 // Configuration for FootPredict AI
 window.CONFIG = {
     // Update this with your actual backend URL after deployment
-    BACKEND_URL: 'https://your-backend-url.onrender.com',
+    BACKEND_URL: 'https://football-ai-backend-odhw.onrender.com',
     
     // Features
     FEATURES: {
