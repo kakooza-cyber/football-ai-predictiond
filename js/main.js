@@ -1,65 +1,60 @@
-// Football Predictions Main JavaScript
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('FootPredict AI loaded successfully!');
-    
-    // Initialize the application
-    initializeApp();
-});
-
-function initializeApp() {
-    // Check if backend is available
-    checkBackendConnection();
-    
-    // Load initial predictions
-    loadInitialPredictions();
-}
-
-async function checkBackendConnection() {
+async function loadLiveMatches() {
     try {
         const backendURL = window.CONFIG?.BACKEND_URL || 'https://football-ai-backend-odhw.onrender.com';
-        const response = await fetch(`${backendURL}/health`);
+        const response = await fetch(`${backendURL}/api/live-matches`);
+        const data = await response.json();
         
-        if (response.ok) {
-            console.log('✅ Backend connection successful');
-        } else {
-            console.log('⚠️ Backend connection issues');
-        }
+        displayLiveMatches(data.live_matches);
     } catch (error) {
-        console.log('❌ Backend not available, using demo data');
+        console.error('Error loading live matches:', error);
+        // Show demo data as fallback
+        displayDemoMatches();
     }
 }
 
-function loadInitialPredictions() {
-    // This would be replaced with actual API calls
-    console.log('Loading predictions...');
-}
-
-// API Service
-class FootballAPIService {
-    constructor() {
-        this.backendURL = window.CONFIG?.BACKEND_URL;
-    }
+function displayLiveMatches(matches) {
+    const container = document.getElementById('live-matches-container');
+    if (!container) return;
     
-    async getPrediction(homeTeam, awayTeam, league) {
-        try {
-            const response = await fetch(`${this.backendURL}/api/predict`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    home_team: homeTeam,
-                    away_team: awayTeam,
-                    league: league
-                })
-            });
-            
-            return await response.json();
-        } catch (error) {
-            console.error('API Error:', error);
-            return null;
-        }
-    }
+    container.innerHTML = matches.map(match => `
+        <div class="match-card">
+            <div class="teams">
+                <span class="home-team">${match.home_team}</span>
+                <span class="vs">VS</span>
+                <span class="away-team">${match.away_team}</span>
+            </div>
+            <div class="match-details">
+                <div class="score">${match.score}</div>
+                <div class="minute">${match.minute}'</div>
+                <div class="status">${match.status}</div>
+            </div>
+        </div>
+    `).join('');
 }
 
-window.footballAPI = new FootballAPIService();
+function displayDemoMatches() {
+    const container = document.getElementById('live-matches-container');
+    if (!container) return;
+    
+    container.innerHTML = `
+        <div class="match-card">
+            <div class="teams">
+                <span class="home-team">Arsenal</span>
+                <span class="vs">VS</span>
+                <span class="away-team">Chelsea</span>
+            </div>
+            <div class="match-details">
+                <div class="score">2-1</div>
+                <div class="minute">65'</div>
+                <div class="status">LIVE</div>
+            </div>
+        </div>
+    `;
+}
+
+// Update your initializeApp function:
+function initializeApp() {
+    checkBackendConnection();
+    loadInitialPredictions();
+    loadLiveMatches(); // Add this line
+}
