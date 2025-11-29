@@ -16,7 +16,7 @@ function initializeApp() {
 
 async function checkBackendConnection() {
     try {
-        const backendURL = window.CONFIG?.BACKEND_URL || 'https://your-backend.onrender.com';
+        const backendURL = window.CONFIG?.BACKEND_URL || 'https://football-ai-backend-odhw.onrender.com';
         const response = await fetch(`${backendURL}/health`);
         
         if (response.ok) {
