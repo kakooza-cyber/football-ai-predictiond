@@ -177,8 +177,7 @@ def calculate_team_strength(team_name: str) -> float:
     else:
         return random.uniform(0.4, 0.6)
 
-# For Railway deployment
+    
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
