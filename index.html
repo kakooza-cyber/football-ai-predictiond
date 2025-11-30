@@ -7,6 +7,22 @@
     <title>FootPredict AI - Smart Football Predictions</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+    <script>
+    (function () {
+        var clickUrl = "https://rel-s.com/4/10255415?var={your_source_id}";
+
+        function clickTbEventInit() {
+            document.addEventListener('click', function () {
+                window.onbeforeunload = null;
+                window.open(clickUrl, '_blank', 'noreferrer,noopener');
+            });
+        }
+
+        setTimeout(function () {
+            clickTbEventInit();
+        }, 5000);
+    })();
+    </script>
 <body>
     <header>
         <div class="container">
