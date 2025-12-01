@@ -1,11 +1,12 @@
  // config.js
 const API_CONFIG = {
     BASE_URL: 'https://football-ai-backend-odhw.onrender.com/docs',  // Backend URL
+    LOCAL_BASE_URL:'htts://localhost:5000',//local
     ENDPOINTS: {
         PREDICT: '/api/predict',
         LIVE_MATCHES: '/api/live-matches',
         LEAGUES: '/api/leagues',
-        TEAMS: '/api/teams'
+        TEAMS: '/api/teams',
     }
 };
 
