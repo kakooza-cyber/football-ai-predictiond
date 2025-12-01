@@ -1,110 +1,63 @@
-// js/api-service.js 
-import CONFIG from './config.js';
+// File: js/api-service.js (NEW FILE - create this)
+
+// Import config if using modules
+// import CONFIG from './config.js';
+
+// OR use global config
+const CONFIG = window.CONFIG || {
+    BACKEND_URL: 'https://football-ai-backend-odhw.onrender.com',
+    ENDPOINTS: {
+        PREDICT: '/api/predict',
+        LIVE_MATCHES: '/api/live-matches',
+        LEAGUES: '/api/leagues',
+        TEAMS: '/api/teams',
+        HEALTH: '/health'
+    }
+};
 
 class APIService {
     constructor() {
-        this.baseUrl = CONFIG.ENV === 'development' 
-            ? CONFIG.LOCAL_BACKEND_URL 
-            : CONFIG.BACKEND_URL;
-        
-        this.cache = new Map(); // Simple cache
-        this.cacheDuration = 60000; // 1 minute cache
+        this.baseUrl = CONFIG.BACKEND_URL;
+        this.endpoints = CONFIG.ENDPOINTS;
+        this.cache = new Map();
+        this.cacheDuration = 30000; // 30 seconds cache
     }
-
-    async request(endpoint, options = {}) {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), CONFIG.TIMEOUT);
-        
-        const defaultOptions = {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            signal: controller.signal,
-            ...options
-        };
-        
-        for (let attempt = 1; attempt <= CONFIG.RETRY_ATTEMPTS; attempt++) {
-            try {
-                const response = await fetch(`${this.baseUrl}${endpoint}`, defaultOptions);
-                clearTimeout(timeoutId);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
-                
-                const data = await response.json();
-                return data;
-                
-            } catch (error) {
-                if (attempt === CONFIG.RETRY_ATTEMPTS) {
-                    console.error(`API request failed after ${attempt} attempts:`, error);
-                    throw error;
-                }
-                console.warn(`Attempt ${attempt} failed, retrying...`);
-                await this.delay(1000 * attempt); // Exponential backoff
-            }
-        }
+function displayPrediction(data) {
+    const prediction = data.prediction; // "Home Win"
+    const confidence = data.confidence; // 57
+    
+    // Create prediction card
+    return `
+        <div class="prediction-card">
+            <h3>Prediction: ${prediction}</h3>
+            <div class="confidence">
+                Confidence: 
+                <span class="confidence-value ${getConfidenceClass(confidence)}">
+                    ${confidence}%
+                </span>
+            </div>
+            <div class="probabilities">
+                <div class="prob home-win">
+                    <div class="prob-label">Home Win</div>
+                    <div class="prob-bar" style="width: ${data.probabilities.home_win}%"></div>
+                    <div class="prob-value">${data.probabilities.home_win}%</div>
+                </div>
+                <div class="prob draw">
+                    <div class="prob-label">Draw</div>
+                    <div class="prob-bar" style="width: ${data.probabilities.draw}%"></div>
+                    <div class="prob-value">${data.probabilities.draw}%</div>
+                </div>
+                <div class="prob away-win">
+                    <div class="prob-label">Away Win</div>
+                    <div class="prob-bar" style="width: ${data.probabilities.away_win}%"></div>
+                    <div class="prob-value">${data.probabilities.away_win}%</div>
+                </div>
+            </div>
+        </div>
+    `;
     }
     
-    delay(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    // Live Matches with caching
-    async getLiveMatches(forceRefresh = false) {
-        const cacheKey = 'live-matches';
-        const now = Date.now();
-        
-        // Check cache first
-        if (!forceRefresh && this.cache.has(cacheKey)) {
-            const cached = this.cache.get(cacheKey);
-            if (now - cached.timestamp < this.cacheDuration) {
-                console.log('Returning cached live matches');
-                return cached.data;
-            }
-        }
-        
-        try {
-            const data = await this.request('/api/live-matches');
-            
-            // Cache the response
-            this.cache.set(cacheKey, {
-                data: data,
-                timestamp: now
-            });
-            
-            return data;
-        } catch (error) {
-            // Try to return cached data even if expired
-            if (this.cache.has(cacheKey)) {
-                console.warn('Using expired cache due to API error');
-                return this.cache.get(cacheKey).data;
-            }
-            throw error;
-        }
-    }
-
-    // Other API methods
-    async getLeagues() {
-        return await this.request('/api/leagues');
-    }
-    
-    async getTeams(league) {
-        return await this.request(`/api/teams/${encodeURIComponent(league)}`);
-    }
-    
-    async predictMatch(matchData) {
-        return await this.request('/api/predict', {
-            method: 'POST',
-            body: JSON.stringify(matchData)
-        });
-    }
-    
-    async checkHealth() {
-        return await this.request('/health');
-    }
 }
 
-// Export singleton instance
-export default new APIService();
+// Create global instance
+window.apiService = new APIService();
