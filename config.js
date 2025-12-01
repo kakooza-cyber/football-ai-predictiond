@@ -1,14 +1,15 @@
-// Configuration for FootPredict AI
-window.CONFIG = {
-    // Update this with your actual backend URL after deployment
-    BACKEND_URL: 'https://football-ai-backend-odhw.onrender.com',
-    
-    // Features
-    FEATURES: {
-        AI_PREDICTIONS: true,
-        LIVE_UPDATES: true,
-        LEAGUE_STANDINGS: true
-    },
+ // config.js
+const API_CONFIG = {
+    BASE_URL: 'https://football-ai-backend-odhw.onrender.com/docs',  // Backend URL
+    ENDPOINTS: {
+        PREDICT: '/api/predict',
+        LIVE_MATCHES: '/api/live-matches',
+        LEAGUES: '/api/leagues',
+        TEAMS: '/api/teams'
+    }
+};
+
+export default API_CONFIG;
     
     // Update intervals in milliseconds
     INTERVALS: {
