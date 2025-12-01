@@ -10,7 +10,7 @@ const API_CONFIG = {
     }
 };
 
-export default API_CONFIG;
+window.CONFIG = CONFIG;
     
     // Update intervals in milliseconds
     INTERVALS: {
