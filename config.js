@@ -1,22 +1,21 @@
- // config.js
-const API_CONFIG = {
-    BASE_URL: 'https://football-ai-backend-odhw.onrender.com',  // Backend URL
-    LOCAL_BASE_URL:'htts://localhost:5000',//local
+// File: js/config.js
+const CONFIG = {
+    BACKEND_URL: 'https://football-ai-backend-odhw.onrender.com', // Your Render URL
+    LOCAL_BACKEND_URL: 'http://localhost:5000', // For local development
+    TIMEOUT: 10000,
+    RETRY_ATTEMPTS: 3,
+    ENV: 'production', // Change to 'development' when working locally
     ENDPOINTS: {
         PREDICT: '/api/predict',
         LIVE_MATCHES: '/api/live-matches',
         LEAGUES: '/api/leagues',
-        TEAMS: '/api/teams',
+        TEAMS: '/api/teams/{league}',
+        HEALTH: '/health'
     }
 };
 
-window.CONFIG = CONFIG;
-    
-    // Update intervals in milliseconds
-    INTERVALS: {
-        LIVE_MATCHES: 30000,    // 30 seconds
-        PREDICTIONS: 600000     // 10 minutes
-    }
-};
+// For ES6 modules (if using import/export)
+export default CONFIG;
 
-console.log('FootPredict AI Config loaded');
+// OR for regular scripts (if using <script src="">)
+// window.CONFIG = CONFIG;
