@@ -1,4 +1,4 @@
-// js/api-service.js (new file)
+// js/api-service.js 
 import CONFIG from './config.js';
 
 class APIService {
