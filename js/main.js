@@ -1,5 +1,6 @@
-// In your main JS file (e.g., app.js or live-matches.js)
-import apiService from './js/api-service.js';
+// Add at the TOP of your existing app.js
+import CONFIG from './config.js';
+import './api-service.js'; // This will register window.apiService
 
 // State management
 let isRefreshing = false;
