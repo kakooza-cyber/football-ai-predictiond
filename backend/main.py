@@ -157,7 +157,47 @@ async def get_teams(league: str):
     league_key = league.lower().replace(" ", "_")
     teams = SAMPLE_TEAMS.get(league_key, SAMPLE_TEAMS["premier_league"])
     return {"league": league, "teams": teams}
-
+@app.get("/api/today-predictions")
+async def get_today_predictions():
+    """Get a list of today's top pre-calculated predictions for the homepage/list page."""
+    
+    predefined_matches = [
+        {"home_team": "Liverpool", "away_team": "Arsenal", "league": "Premier League"},
+        {"home_team": "Real Madrid", "away_team": "Barcelona", "league": "La Liga"},
+        {"home_team": "Juventus", "away_team": "AC Milan", "league": "Serie A"},
+        {"home_team": "Man City", "away_team": "Tottenham", "league": "Premier League"},
+    ]
+    
+    predictions_list = []
+    
+    # Run the prediction logic for each match
+    for match in predefined_matches:
+        try:
+            # Create a request model instance for the predict_match function
+            request_data = PredictionRequest(**match)
+            
+            # Call the existing prediction logic
+            prediction_result = await predict_match(request_data)
+            
+            # Simplify the output structure to match what the frontend expects
+            predictions_list.append({
+                "home_team": prediction_result['match']['home_team'],
+                "away_team": prediction_result['match']['away_team'],
+                "league": prediction_result['match']['league'],
+                "prediction": prediction_result['prediction'],
+                "confidence": prediction_result['confidence'],
+                "expected_goals": f"{prediction_result['analysis']['expected_goals_home']} - {prediction_result['analysis']['expected_goals_away']}",
+                "bts_prediction": "Yes" if prediction_result['analysis']['both_teams_score_prob'] > 60 else "No",
+                "over_25_prediction": "Yes" if prediction_result['analysis']['over_2_5_goals_prob'] > 50 else "No",
+                "match_time": f"Today, {random.randint(15, 22)}:00 GMT"
+            })
+            
+        except Exception as e:
+            # Log the error but continue to the next match
+            print(f"Error generating prediction for {match['home_team']}: {e}")
+            
+    return {"predictions": predictions_list}
+    
 def calculate_team_strength(team_name: str) -> float:
     """Calculate team strength for predictions"""
     elite_teams = ["man city", "arsenal", "liverpool", "real madrid", "barcelona", "bayern"]
