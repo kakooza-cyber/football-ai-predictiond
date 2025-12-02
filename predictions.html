@@ -33,17 +33,6 @@
             <p>Get accurate match predictions powered by our advanced AI algorithm.</p>
         </div>
     </section>
-
-    <div class="container">
-        <section class="api-settings">
-            <h3>Backend Configuration</h3>
-            <p>Your predictions will load automatically when backend is deployed.</p>
-            <div class="api-status connected">
-                <div class="status-indicator connected"></div>
-                <span>Backend: Ready to connect</span>
-            </div>
-        </section>
-
         <section id="predictions-list"> <div class="section-header">
                 <h2 class="section-title">Today's Predictions</h2>
                 <button class="refresh-btn" id="refresh-predictions">
@@ -57,7 +46,8 @@
 
             </section>
     </div>
-
+  <div>class="match-card">...</div>
+<div id="predictions-container"></div>
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -79,7 +69,7 @@
             </div>
         </div>
     </footer>
-
+<script src="js/config.js"></script>
     <script src="js/api.js"></script> 
     <script src="js/predictions.js"></script>
 </body>
