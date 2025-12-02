@@ -1,3 +1,4 @@
+const RENDER_BASE_URL = 'https://football-ai-backend-odhw.onrender.com';
 // Function to check the backend's health status
 async function checkBackendHealth() {
     const endpoint = `${RENDER_BASE_URL}/health`;
