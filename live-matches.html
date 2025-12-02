@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Matches - FOOTPredict AI</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Connection Status -->
+        <div id="connection-status" class="status-indicator">Checking...</div>
+        
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <div class="logo">
+                    ⚽ <span>FOOTPredict</span> AI
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="predictions.html" class="nav-link">Predictions</a>
+                    <a href="live-matches.html" class="nav-link active">Live Matches</a>
+                    <a href="leagues.html" class="nav-link">Leagues</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </nav>
+            </div>
+        </header>
+        
+        <!-- Controls -->
+        <div class="controls">
+            <h1>📺 Live Football Matches</h1>
+            <div>
+                <button id="refresh-matches" class="refresh-btn">🔄 Refresh</button>
+                <span id="last-refreshed">Last updated: --:--</span>
+            </div>
+        </div>
+        
+        <!-- Live Matches Container -->
+        <div id="live-matches-container">
+            <!-- Content loaded by JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/api-service.js"></script>
+    <script src="js/live-matches.js"></script>
+    
+    <footer>
+        <p>Live data updates every 30 seconds. Matches may be delayed by a few minutes.</p>
+    </footer>
+</body>
+  </html>
