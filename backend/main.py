@@ -31,7 +31,7 @@ class PredictionRequest(BaseModel):
 SAMPLE_TEAMS = {
     "premier_league": ["Arsenal", "Chelsea", "Liverpool", "Man City", "Man United", "Tottenham"],
     "la_liga": ["Barcelona", "Real Madrid", "Atletico Madrid", "Sevilla"],
-    "serie_a": ["Juventus", "AC Milan", "Inter Milan", "Napoli"]
+    "serie_a": ["Juventus", "matako", "Inter Milan", "Napoli"]
 }
 
 @app.get("/")
