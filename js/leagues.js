@@ -145,23 +145,27 @@ async function loadTeamsForLeague(leagueName) {
 }
 
 
-// --- 4. Initialization ---
+
 
 /**
  * Loads the initial list of leagues when the page is ready.
  */
+ // --- 4. Initialization ---
+
 async function initializeLeaguesPage() {
     leaguesContainer.innerHTML = '<p>Loading available leagues from backend...</p>';
 
-    const leagues = await getLeagues();
+    const responseData = await getLeagues(); // This gets the whole object: { "leagues": [...] }
     
-    if (leagues) {
-        displayLeagues(leagues);
+    // Safely check for the key 'leagues' inside the response object
+    const leaguesArray = responseData ? responseData.leagues : null; 
+    
+    if (leaguesArray) {
+        // Pass only the array to the display function
+        displayLeagues(leaguesArray); 
     } else {
-        leaguesContainer.innerHTML = '<p class="error">Could not connect to backend to load leagues.</p>';
+        leaguesContainer.innerHTML = '<p class="error">Could not connect to backend to load leagues, or data is missing.</p>';
     }
 }
 
-
-document.addEventListener('DOMContentLoaded', initializeLeaguesPage);
-          
+    document.addEventListener('DOMContentLoaded', initializeLeaguesPage);      
