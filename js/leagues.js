@@ -4,7 +4,7 @@ console.log('Looking for teams-display-container:', document.getElementById('tea
 // --- Configuration ---
 const RENDER_BASE_URL = 'https://football-ai-backend-odhw.onrender.com';
 const LEAGUES_ENDPOINT = `${RENDER_BASE_URL}/api/leagues`;
-const TEAMS_ENDPOINT = `${RENDER_BASE_URL}/api/teams/${leagueName}`;
+const TEAMS_ENDPOINT = `${RENDER_BASE_URL}/api/teams/${encodedLeague}`;
 
 
 
