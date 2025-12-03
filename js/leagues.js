@@ -1,7 +1,7 @@
 // --- Configuration ---
 const RENDER_BASE_URL = 'https://football-ai-backend-odhw.onrender.com';
 const LEAGUES_ENDPOINT = `${RENDER_BASE_URL}/api/leagues`;
-const TEAMS_ENDPOINT = `${RENDER_BASE_URL}/api/teams/${encodedleague}`;
+const TEAMS_ENDPOINT = `${RENDER_BASE_URL}/api/teams/{league}`;
 
 
 
