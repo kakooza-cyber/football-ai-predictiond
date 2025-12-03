@@ -1,3 +1,6 @@
+console.log('leagues.js loaded successfully!');
+console.log('Looking for leagues-container:', document.getElementById('leagues-container'));
+console.log('Looking for teams-display-container:', document.getElementById('teams-display-container'));
 // --- Configuration ---
 const RENDER_BASE_URL = 'https://football-ai-backend-odhw.onrender.com';
 const LEAGUES_ENDPOINT = `${RENDER_BASE_URL}/api/leagues`;
