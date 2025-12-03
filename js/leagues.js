@@ -1,16 +1,12 @@
-console.log('leagues.js loaded successfully!');
-console.log('Looking for leagues-container:', document.getElementById('leagues-container'));
-console.log('Looking for teams-display-container:', document.getElementById('teams-display-container'));
 // --- Configuration ---
 const RENDER_BASE_URL = 'https://football-ai-backend-odhw.onrender.com';
 const LEAGUES_ENDPOINT = `${RENDER_BASE_URL}/api/leagues`;
-const TEAMS_ENDPOINT = `${RENDER_BASE_URL}/api/teams/${encodedLeague}`;
+
 
 
 
 // DOM elements
-const leaguesContainer = document.getElementById('leagues-container');
-const teamsContainer = document.getElementById('teams-display-container');
+const leaguesContainer = document.getElementById('leagues-container')
 
 // --- 1. Fetching Functions ---
 
@@ -30,10 +26,12 @@ async function getLeagues() {
     }
 }
 
-/**
- * Fetches teams for a specific league.
- * @param {string} leagueName - The name of the league.
- */
+
+
+ @param {string} 
+
+
+ 
 async function getTeamsByLeague(leagueName) {
     // ... (Use the fetch logic defined previously)
     const encodedLeague = encodeURIComponent(leagueName); 
@@ -49,12 +47,9 @@ async function getTeamsByLeague(leagueName) {
 }
 
 
-// --- 2. Display Functions ---
-
-/**
- * Renders the list of fetched leagues onto the HTML page using the card structure.
- * * @param {Array<Object>} leagues - An array of league objects from the API.
- */
+// --- 2. Display Functions 
+  @param {Array<Object>} 
+ 
 function displayLeagues(leagues) {
     if (!leaguesContainer) return;
 
