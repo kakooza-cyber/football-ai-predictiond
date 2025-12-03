@@ -112,7 +112,7 @@ async function getLeagues() {
 // Function to get teams belonging to a specific league
 async function getTeamsByLeague(leagueName) {
     // 1. Sanitize the league name (e.g., URL encoding for safety)
-    const encodedLeague = encodeURIComponent(leagueName); 
+    const encodedLeague = encodeURLComponent(leagueName); 
     
     // 2. Insert the league name into the URL
     const endpoint = `${RENDER_BASE_URL}/api/teams/${encodedLeague}`;
